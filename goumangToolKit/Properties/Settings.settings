@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="mysqlsolution.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="datastr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Database='autorivet';Data Source='192.168.3.32';User Id='autorivet';Password='222222';CharSet=utf8;Allow User Variables=True;Allow Zero Datetime=True</Value>
+    </Setting>
+    <Setting Name="info_path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\192.168.3.32\Autorivet\prepare\INFO\</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

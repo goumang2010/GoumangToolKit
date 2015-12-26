@@ -8,12 +8,11 @@ using System.IO;
 using System.Security.Cryptography;
 using Newtonsoft.Json;
 using System.Windows.Forms;
-using mysqlsolution;
+using GoumangToolKit;
 using IronPython.Hosting;
 using Microsoft.Scripting.Hosting;
 using Microsoft.VisualBasic;
-using FileManagerNew;
-namespace mysqlsolution
+namespace GoumangToolKit
 {
    public static class localMethod
     {

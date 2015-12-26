@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.ComponentModel;
 
-namespace mysqlsolution
+namespace GoumangToolKit
 {
   public  class SocketServerService:INotifyPropertyChanged
 

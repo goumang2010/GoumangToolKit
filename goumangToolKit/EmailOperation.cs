@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 
-namespace mysqlsolution
+namespace GoumangToolKit
 {
     /// <summary>
     /// 电子邮件操作类。

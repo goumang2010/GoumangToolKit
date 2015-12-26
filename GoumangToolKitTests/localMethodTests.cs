@@ -1,10 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using mysqlsolution;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+using GoumangToolKit;
 namespace mysqlsolution.Tests
 {
     [TestClass()]

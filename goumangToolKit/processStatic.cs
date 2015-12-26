@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using OFFICE_Method;
 
-namespace mysqlsolution
+namespace GoumangToolKit
 {
    public class processStatic
     {

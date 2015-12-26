@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace mysqlsolution
+namespace GoumangToolKit
 {
     public partial class Save_Folder : Form
     {

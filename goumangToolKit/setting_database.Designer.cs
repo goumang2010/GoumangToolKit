@@ -1,4 +1,4 @@
-﻿namespace mysqlsolution
+﻿namespace GoumangToolKit
 {
     partial class setting_database
     {

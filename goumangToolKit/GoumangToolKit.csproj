@@ -76,6 +76,8 @@
   <ItemGroup>
     <Compile Include="AutorivetKit\AutorivetDB.cs" />
     <Compile Include="CommandInfo.cs" />
+    <Compile Include="FileTools\fileLists.cs" />
+    <Compile Include="FTPTools\FtpOperation.cs" />
     <Compile Include="MySqlTools\DbHelperSQL.cs" />
     <Compile Include="EmailOperation.cs" />
     <Compile Include="JsonTools\JsonModel.cs" />
@@ -108,6 +110,12 @@
     <Compile Include="setting_database.Designer.cs">
       <DependentUpon>setting_database.cs</DependentUpon>
     </Compile>
+    <Compile Include="SocketTools\SocketServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SocketTools\SocketServer.Designer.cs">
+      <DependentUpon>SocketServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="SocketTools\SocketServerService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +128,9 @@
     <EmbeddedResource Include="setting_database.resx">
       <DependentUpon>setting_database.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SocketTools\SocketServer.resx">
+      <DependentUpon>SocketServer.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -129,12 +140,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\FileManagerNew\FileManagerNew\FileManagerNew.csproj">
-      <Project>{ceb6bed3-31cd-4315-9f2d-f5ebf1cdf89a}</Project>
-      <Name>FileManagerNew</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

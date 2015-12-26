@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using System.Linq;
 
-namespace mysqlsolution
+namespace GoumangToolKit
 {
     /// <summary>
     /// 数据访问抽象基础类

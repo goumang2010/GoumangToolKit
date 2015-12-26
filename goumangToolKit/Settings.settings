@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WindowsFormsApplication1.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="path1" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="path2" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ftp_addr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">61.161.226.2</Value>
+    </Setting>
+    <Setting Name="ftp_user" Type="System.String" Scope="User">
+      <Value Profile="(Default)">saciftp</Value>
+    </Setting>
+    <Setting Name="ftp_key" Type="System.String" Scope="User">
+      <Value Profile="(Default)">saciftp_C1107</Value>
+    </Setting>
+    <Setting Name="connectstr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Database='state';Data Source='192.168.3.32';User Id='partquery';Password='222222';CharSet=gb2312</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

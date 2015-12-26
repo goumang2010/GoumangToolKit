@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoumangToolKit", "goumangTo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoumangToolKitTests", "GoumangToolKitTests\GoumangToolKitTests.csproj", "{7589CE7B-F720-4DBB-AFEB-DAE78A68B96E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoumangToolKit.NET4.6", "GoumangToolKit.NET4.6\GoumangToolKit.NET4.6.csproj", "{0838A3FC-7AAF-4030-B03F-667DA6413B4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,14 @@ Global
 		{7589CE7B-F720-4DBB-AFEB-DAE78A68B96E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7589CE7B-F720-4DBB-AFEB-DAE78A68B96E}.Release|x86.ActiveCfg = Release|Any CPU
 		{7589CE7B-F720-4DBB-AFEB-DAE78A68B96E}.Release|x86.Build.0 = Release|Any CPU
+		{0838A3FC-7AAF-4030-B03F-667DA6413B4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0838A3FC-7AAF-4030-B03F-667DA6413B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0838A3FC-7AAF-4030-B03F-667DA6413B4C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0838A3FC-7AAF-4030-B03F-667DA6413B4C}.Debug|x86.Build.0 = Debug|Any CPU
+		{0838A3FC-7AAF-4030-B03F-667DA6413B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0838A3FC-7AAF-4030-B03F-667DA6413B4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0838A3FC-7AAF-4030-B03F-667DA6413B4C}.Release|x86.ActiveCfg = Release|Any CPU
+		{0838A3FC-7AAF-4030-B03F-667DA6413B4C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GoumangToolKitTests</RootNamespace>
     <AssemblyName>GoumangToolKitTests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,6 +35,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -52,10 +54,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FileTools\fileListsTests.cs" />
     <Compile Include="localMethodTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SACITools\PartDBTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GoumangToolKit.NET4.6\GoumangToolKit.NET4.6.csproj">
+      <Project>{0838A3FC-7AAF-4030-B03F-667DA6413B4C}</Project>
+      <Name>GoumangToolKit.NET4.6</Name>
+    </ProjectReference>
     <ProjectReference Include="..\goumangToolKit\GoumangToolKit.csproj">
       <Project>{41F56599-8D65-48B1-AC56-99E8D146BC2D}</Project>
       <Name>GoumangToolKit</Name>

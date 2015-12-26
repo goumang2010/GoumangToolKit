@@ -6,9 +6,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using mysqlsolution;
+using GoumangToolKit;
 
-namespace mysqlsolution
+namespace GoumangToolKit
 {
     public partial class productList : UserControl
     {

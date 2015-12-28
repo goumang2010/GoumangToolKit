@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Data;
 using System.Configuration;
 using System.Web;
@@ -8,12 +8,14 @@ using System.Text;
 using System.Net;
 using System.IO;
 using System.Collections.Generic;
-using System.Windows.Forms;
+
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace GoumangToolKit
 {
  
-    public  class FtpOperation
+    public  class FtpOperationAsync
     {
       string ftpServerIP;
 
@@ -40,7 +42,7 @@ namespace GoumangToolKit
 
         }
 
-        public void FtpUpDown(string ftpServerIP, string ftpUserID, string ftpPassword)
+        public  FtpOperationAsync(string ftpServerIP, string ftpUserID, string ftpPassword)
         {
             this.ftpServerIP = ftpServerIP;
 
@@ -51,7 +53,7 @@ namespace GoumangToolKit
 
         //都调用这个
 
-        private string[] GetFileList(string path, string WRMethods)//上面的代码示例了如何从ftp服务器上获得文件列表
+        private async System.Threading.Tasks.Task<string[]> GetFileListAsync(string path, string WRMethods)//上面的代码示例了如何从ftp服务器上获得文件列表
         {
             string[] downloadFiles;
             StringBuilder result = new StringBuilder();
@@ -61,7 +63,7 @@ namespace GoumangToolKit
 
                 reqFTP.Method = WRMethods;
 
-                WebResponse response = reqFTP.GetResponse();
+                WebResponse response = await reqFTP.GetResponseAsync();
 
                 StreamReader reader = new StreamReader(response.GetResponseStream(), System.Text.Encoding.Default);//中文文件名
 
@@ -92,7 +94,7 @@ namespace GoumangToolKit
 
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+              
 
                 downloadFiles = null;
 
@@ -100,26 +102,26 @@ namespace GoumangToolKit
             }
         }
 
-        public string[] GetFileList(string path)//上面的代码示例了如何从ftp服务器上获得文件列表
+        public async System.Threading.Tasks.Task<string[]> GetFileListAsync(string path)//上面的代码示例了如何从ftp服务器上获得文件列表
         {
-            return GetFileList("ftp://" + ftpServerIP + "/" + path, WebRequestMethods.Ftp.ListDirectory);
+            return await GetFileListAsync("ftp://" + ftpServerIP + "/" + path, WebRequestMethods.Ftp.ListDirectory);
         }
 
-        public string[] GetFileList()//上面的代码示例了如何从ftp服务器上获得文件列表
+        public async System.Threading.Tasks.Task<string[]> GetFileListAsync()//上面的代码示例了如何从ftp服务器上获得文件列表
         {
-            return GetFileList("ftp://" + ftpServerIP + "/", WebRequestMethods.Ftp.ListDirectory);
+           return await GetFileListAsync("ftp://" + ftpServerIP + "/", WebRequestMethods.Ftp.ListDirectory);
         }
 
-        public void Upload(string filename, String directory, String newFileName) //上面的代码实现了从ftp服务器上载文件的功能
+        public async void UploadAsync(string filename, String directory, String newFileName) //上面的代码实现了从ftp服务器上载文件的功能
         {
 
             FileInfo fileInf = new FileInfo(filename);
 
             string uri = "ftp://" + ftpServerIP + "/" + directory + "/" + newFileName;
-            
-            if (!DirectoryIsExist(directory))
+
+            if (!await DirectoryIsExistAsync(directory))
             {
-                MakeDir(directory);
+                await MakeDirAsync(directory);
             }
 
             Connect(uri);//连接        
@@ -152,7 +154,7 @@ namespace GoumangToolKit
 
                 // 把上传的文件写入流
 
-                Stream strm = reqFTP.GetRequestStream();
+                Stream strm =await reqFTP.GetRequestStreamAsync();
 
                 // 每次读文件流的kb
 
@@ -179,7 +181,7 @@ namespace GoumangToolKit
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message, "Upload Error");
+                throw ex;
             }
 
         }
@@ -265,7 +267,7 @@ namespace GoumangToolKit
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message, "删除错误");
+                throw ex;
 
             }
 
@@ -273,7 +275,7 @@ namespace GoumangToolKit
 
         //创建目录
 
-        public void MakeDir(string dirName)
+        public async Task MakeDirAsync(string dirName)
         {
             try
             {
@@ -283,7 +285,7 @@ namespace GoumangToolKit
 
                 reqFTP.Method = WebRequestMethods.Ftp.MakeDirectory;
 
-                FtpWebResponse response = (FtpWebResponse)reqFTP.GetResponse();
+               var response =await reqFTP.GetResponseAsync();
 
                 response.Close();
 
@@ -291,9 +293,8 @@ namespace GoumangToolKit
 
             catch (Exception ex)
             {
-
-                MessageBox.Show(ex.Message);
-
+                throw ex;
+             
             }
 
         }
@@ -319,7 +320,7 @@ namespace GoumangToolKit
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message);
+                throw ex;
 
             }
 
@@ -327,7 +328,7 @@ namespace GoumangToolKit
 
         //获得文件大小
 
-        public long GetFileSize(string filename)
+        public async Task<long> GetFileSizeAsync(string filename)
         {
 
 
@@ -344,7 +345,7 @@ namespace GoumangToolKit
 
                 reqFTP.Method = WebRequestMethods.Ftp.GetFileSize;
 
-                FtpWebResponse response = (FtpWebResponse)reqFTP.GetResponse();
+                FtpWebResponse response = (FtpWebResponse)await reqFTP.GetResponseAsync();
 
                 fileSize = response.ContentLength;
 
@@ -355,7 +356,7 @@ namespace GoumangToolKit
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message);
+                throw ex;
 
             }
 
@@ -365,7 +366,7 @@ namespace GoumangToolKit
 
         //文件改名
 
-        public void Rename(string currentFilename, string newFilename)
+        public async void RenameAsync(string currentFilename, string newFilename)
         {
             try
             {
@@ -380,7 +381,7 @@ namespace GoumangToolKit
                 reqFTP.RenameTo = newFilename;
 
 
-                FtpWebResponse response = (FtpWebResponse)reqFTP.GetResponse();
+                FtpWebResponse response = (FtpWebResponse)await reqFTP.GetResponseAsync();
 
                 //Stream ftpStream = response.GetResponseStream();
 
@@ -393,27 +394,60 @@ namespace GoumangToolKit
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message);
+                throw ex;
 
             }
 
         }
 
+        //获得文件明晰
 
-
-        public string[] GetFilesDetailList()
+        public async Task<string[]> GetFilesDetailListAsync()
         {
 
-            return GetFileList("ftp://" + ftpServerIP + "/", WebRequestMethods.Ftp.ListDirectoryDetails);
+            return await GetFileListAsync("ftp://" + ftpServerIP + "/", WebRequestMethods.Ftp.ListDirectoryDetails);
 
         }
 
-        //获得文件明晰
+        //Recursion for operate files
+        public async Task<bool> WalktreeFTP(string Rootpath,Action<string,string> fileOp)
+        {
+            Func<string,Task> recursion = null;
+            recursion = async delegate (string path)
+              {
+                  string[] ifdictinary;
+                  ifdictinary = await GetFilesDetailListAsync(path);
+                  string[] allfile;
+                  allfile = await GetFileListAsync(path);
+                  for (int i = 4; i < ifdictinary.Count(); i++)
+                  {
+                      int m = i - 2;
+                      string filename = allfile[m];
+                      string kk = ifdictinary[i];
+                      if (kk.Substring(0, 1) == "d")
+                      {
+                          //如果为目录，则递归遍历
+                        await  recursion(path + "/" + filename);
+                      }
+                      //If it is a file
+                      else if (kk.Substring(0, 1) == "-")
+                      {
+                          string folderpath = "ftp://" + ftpServerIP + "/" + path + "/";
+                          fileOp(filename, folderpath);
 
-        public string[] GetFilesDetailList(string path)
+
+                      }
+
+                  }
+              };
+           await  recursion(Rootpath);
+            return true;
+
+        }
+        public async Task<string[]> GetFilesDetailListAsync(string path)
         {
 
-            return GetFileList("ftp://" + ftpServerIP + "/" + path, WebRequestMethods.Ftp.ListDirectoryDetails);
+            return await GetFileListAsync("ftp://" + ftpServerIP + "/" + path, WebRequestMethods.Ftp.ListDirectoryDetails);
         }
 
         /// <summary>
@@ -421,9 +455,9 @@ namespace GoumangToolKit
         /// </summary>
         /// <param name="dirName"></param>
         /// <returns>false不存在，true存在</returns>
-        public Boolean DirectoryIsExist(string dirName)        
-        { 
-            string[] value = GetFileList(dirName);
+        public async Task<bool> DirectoryIsExistAsync(string dirName)
+        {
+            string[] value = await GetFileListAsync(dirName);
             if (value == null)
             {
                 return false;

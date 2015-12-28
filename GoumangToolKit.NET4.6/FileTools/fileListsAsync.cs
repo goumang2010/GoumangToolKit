@@ -71,13 +71,12 @@ namespace GoumangToolKit
           await  WalkDirectoryTree(folderpath);
         }
 
-        public static async Task WalkTreeAsync(IEnumerable<string> path,Action<FileInfo> doit)
+        public static async Task WalkTreeAsync(string path,Action<FileInfo> doit)
         {
             List<FileInfo> fiList = new List<FileInfo>();
-            foreach (var pp in  path)
-            {
-               await  fiList.WalkTreeAsync(pp,doit:doit);
-            }
+
+               await  fiList.WalkTreeAsync(path,doit:doit);
+            
 
           
         }

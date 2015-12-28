@@ -39,14 +39,14 @@ namespace GoumangToolKit
             
             pypath = @"\\192.168.3.32\softwareTools\Autorivet_team_manage\settings\" + pypath;
             backupfile(pypath);
-            var lines = ReadLines(pypath);
+            var lines = FileOperation.ReadLines(pypath);
            var dd= lines.Select(p => p.Replace(oldstr, newstr));
             
 
             if(dd!=null&&dd.Count()!=0)
             {
                 //Copy to list,so it can close the file
-                WriteFile(dd.ToList(), pypath);
+                FileOperation.WriteFile(dd.ToList(), pypath);
             }
            
 
@@ -107,56 +107,7 @@ namespace GoumangToolKit
             return null;
         }
 
-        //public static bool WriteLines(IEnumerable<string> content, string fileName)
-        //{
-        //    using (StreamWriter sw = new StreamWriter(fileName, false))
-        //    {
-        //        foreach(string pp in content)
-        //        {
-        //            sw.WriteLine(pp);
-        //        }
-               
-        //    }
-        //    return true;
-        //}
 
-      public  static IEnumerable<string> ReadLines(string filename)
-        {
-            return ReadLines(filename, Encoding.UTF8);
-        }
-
-      public  static IEnumerable<string> ReadLines(string filename, Encoding encoding)
-        {
-            return ReadLines(delegate {
-                return new StreamReader(filename, encoding);
-            });
-        }
-
-     public  static IEnumerable<string> ReadLines(Func<TextReader> provider)
-        {
-            using (TextReader reader = provider())
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    yield return line;
-                }
-            }
-        }
-
-
-        public static bool WriteFile(this IEnumerable<string> ls,string filepath)
-        {
-            using (StreamWriter sw = new StreamWriter(filepath,false))
-            {
-                foreach(string pp in ls)
-                {
-                    sw.WriteLine(pp);
-                }
-                
-            }
-            return true;
-        }
 
         
 

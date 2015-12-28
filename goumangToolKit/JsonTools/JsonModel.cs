@@ -25,19 +25,38 @@ namespace GoumangToolKit
             return outputstring;
         }
 
+        public bool AppendToFile(string filepath)
+        {
+            var ls = jsonMethod.ReadFromFile(filepath);
+            ls.Add(this);
+            ls.WriteToFile(filepath);
+            return true;
+        }
+
+
     }
+
+
+
 
     public static class jsonMethod
     {
-        public static List<historyJsonModel> iniFromStr( string str)
+        public static List<historyJsonModel> ReadFromStr( string str)
         {
-            // hmls = new List<historyJsonModel>();
             JsonSerializer serializer = new JsonSerializer();
             StringReader sr = new StringReader(str);
             //若是直接赋值，则不能使用静态拓展方法
            return (List<historyJsonModel>)serializer.Deserialize(new JsonTextReader(sr), typeof(List<historyJsonModel>))??new List<historyJsonModel>();
            // hmls = (p1 ?? new List<historyJsonModel>());
            
+        }
+        public static List<historyJsonModel> ReadFromFile(string filename)
+        {
+            using (var sr =new StreamReader(filename, Encoding.UTF8))
+            {
+             JsonSerializer serializer = new JsonSerializer();
+            return (List<historyJsonModel>)serializer.Deserialize(new JsonTextReader(sr), typeof(List<historyJsonModel>)) ?? new List<historyJsonModel>();
+            }
         }
 
         public static string JsonToString(this List<historyJsonModel> hmls)
@@ -57,11 +76,20 @@ namespace GoumangToolKit
             StringWriter sb = new StringWriter();
             serializer.Serialize(new JsonTextWriter(sb), p1);
 
-
             return sb.ToString();
         }
-      
 
+        public static bool WriteToFile(this List<historyJsonModel> p1,string filepath)
+        {
+            using (StreamWriter sw = new StreamWriter(filepath, false))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(new JsonTextWriter(sw), p1);
+            }
+
+
+            return true;
+        }
 
 
     }

@@ -19,7 +19,8 @@ namespace GoumangToolKit
         public static dynamic GetConfigValue(string name, string pypath="configuration.py")
         {
             pypath = @"\\192.168.3.32\softwareTools\Autorivet_team_manage\settings\" + pypath;
-            ScriptEngine engine = Python.CreateEngine();
+            ScriptEngine engine = null;
+            engine =Python.CreateEngine();
             ScriptScope scope = engine.CreateScope();
            
             if (File.Exists(pypath))

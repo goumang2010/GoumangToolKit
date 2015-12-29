@@ -40,7 +40,7 @@ namespace GoumangToolKit
 
         }
 
-        public void FtpUpDown(string ftpServerIP, string ftpUserID, string ftpPassword)
+        public  FtpOperation(string ftpServerIP, string ftpUserID, string ftpPassword)
         {
             this.ftpServerIP = ftpServerIP;
 
@@ -48,6 +48,22 @@ namespace GoumangToolKit
 
             this.ftpPassword = ftpPassword;
         }
+
+        public FtpOperation()
+        {
+            string ftp_addr = (string)(localMethod.GetConfigValue("FTP_ADDR", "PartDBCfg.py"));
+            string ftp_user = (string)(localMethod.GetConfigValue("FTP_USER", "PartDBCfg.py"));
+            string ftp_key = (string)(localMethod.GetConfigValue("FTP_KEY", "PartDBCfg.py"));
+            this.ftpServerIP = ftp_addr;
+
+            this.ftpUserID = ftp_user;
+
+            this.ftpPassword = ftp_key;
+        }
+
+
+
+
 
         //都调用这个
 
@@ -183,14 +199,29 @@ namespace GoumangToolKit
             }
 
         }
-
-        public bool Download(string filePath, string fileName, out string errorinfo)////上面的代码实现了从ftp服务器下载文件的功能
+        public FtpWebResponse Download(string FTPFileFullName)
         {
             try
             {
-                String onlyFileName = Path.GetFileName(fileName);
+                string url =FTPFileFullName;
+                Connect(url);//连接 
+                reqFTP.Credentials = new NetworkCredential(ftpUserID, ftpPassword);
+                FtpWebResponse response = (FtpWebResponse)reqFTP.GetResponse();
+                return response;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
 
-                string newFileName = filePath + "\\" + onlyFileName;
+        }
+        public bool Download(string LocalFileFullName, string FTPFileFullName, out string errorinfo)////上面的代码实现了从ftp服务器下载文件的功能
+        {
+            try
+            {
+                String onlyFileName = Path.GetFileName(FTPFileFullName);
+
+                string newFileName = LocalFileFullName ;
 
                 if (File.Exists(newFileName))
                 {
@@ -198,9 +229,9 @@ namespace GoumangToolKit
                     errorinfo = string.Format("本地文件{0}已存在,无法下载", newFileName);
                     return false;
                 }
-                string url = "ftp://" + ftpServerIP + "/" + fileName;
+                string url =  FTPFileFullName;
                 Connect(url);//连接 
-                reqFTP.Credentials = new NetworkCredential(ftpUserID, ftpPassword);
+                reqFTP.Method = WebRequestMethods.Ftp.DownloadFile;
                 FtpWebResponse response = (FtpWebResponse)reqFTP.GetResponse();
                 Stream ftpStream = response.GetResponseStream();
                 long cl = response.ContentLength;

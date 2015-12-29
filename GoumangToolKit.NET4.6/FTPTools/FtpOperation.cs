@@ -186,7 +186,7 @@ namespace GoumangToolKit
 
         }
 
-        public bool Download(string filePath, string fileName, out string errorinfo)////上面的代码实现了从ftp服务器下载文件的功能
+        public bool Download(string filePath, string fileName, out string errorinfo)
         {
             try
             {
@@ -415,10 +415,16 @@ namespace GoumangToolKit
             Func<string,Task> recursion = null;
             recursion = async delegate (string path)
               {
-                  string[] ifdictinary;
-                  ifdictinary = await GetFilesDetailListAsync(path);
-                  string[] allfile;
-                  allfile = await GetFileListAsync(path);
+                  string[] ifdictinary=new string[1];
+                  string[] allfile=new string[1];
+
+                      ifdictinary = await GetFilesDetailListAsync(path);
+
+
+                      allfile = await GetFileListAsync(path);
+
+
+
                   for (int i = 4; i < ifdictinary.Count(); i++)
                   {
                       int m = i - 2;
@@ -441,7 +447,7 @@ namespace GoumangToolKit
                   }
               };
            await  recursion(Rootpath);
-            return true;
+           return true;
 
         }
         public async Task<string[]> GetFilesDetailListAsync(string path)

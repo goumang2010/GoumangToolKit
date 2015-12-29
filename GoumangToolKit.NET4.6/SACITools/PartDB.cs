@@ -128,10 +128,9 @@ namespace GoumangToolKit
                     else
 
                     {
-                        //检查地址是否存在，若不存在，则更新记录
+                        //Because check if file exists costs a lot, so update the record directly
                         var item = check.First();
-                        if (!File.Exists(item["FilePath"].AsString))
-                        {
+
                             var updatestr = new BsonDocument {
                            { "$set",
                            new BsonDocument { { "FilePath", folderpath+filename },
@@ -139,20 +138,15 @@ namespace GoumangToolKit
 
                           } };
                             model.collection.UpdateOne(filter, updatestr);
-                        }
+                        
                     }
                     filenameQueue.Add(filename);
                 }
             };
-            try
-            {
+
                 return await saciftp.WalktreeFTP(path, syncDB);
-            }
-            catch
-            {
-                return false;
-            }
-          
+
+
             
 
         }

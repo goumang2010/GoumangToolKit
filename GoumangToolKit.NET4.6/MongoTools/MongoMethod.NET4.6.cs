@@ -26,7 +26,7 @@ namespace GoumangToolKit
 
         public async Task<IEnumerable<BsonDocument>> FetchTextData(string filterstr)
         {
-            string regEx = "-";
+            string regEx = "[-\\s]";
             var array = Regex.Split(filterstr, regEx, RegexOptions.IgnoreCase);
             string querystr = "";
             if (array.Count() == 1)
@@ -43,9 +43,10 @@ namespace GoumangToolKit
             }
 
 
+            
 
             var filter = Builders<BsonDocument>.Filter.Eq("$text", new BsonDocument { { "$search", querystr } });
-            List<string> dd = new List<string>();
+           // List<string> dd = new List<string>();
             return await collection.Find(filter).ToListAsync();
         }
 

@@ -64,12 +64,8 @@
     <Compile Include="SACITools\PartDBTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AutorivetService\AutorivetService.csproj">
-      <Project>{21CD71C4-6CF7-4E5A-94BB-C81E3745C488}</Project>
-      <Name>AutorivetService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GoumangToolKit.NET4.6\GoumangToolKit.NET4.6.csproj">
-      <Project>{0838A3FC-7AAF-4030-B03F-667DA6413B4C}</Project>
+      <Project>{0838a3fc-7aaf-4030-b03f-667da6413b4c}</Project>
       <Name>GoumangToolKit.NET4.6</Name>
     </ProjectReference>
     <ProjectReference Include="..\goumangToolKit\GoumangToolKit.csproj">

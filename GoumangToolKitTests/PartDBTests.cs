@@ -27,7 +27,7 @@ namespace AutorivetService.Tests
             {
                 //Get the update path
                 var up = GoumangToolKit.localMethod.GetConfigValue("UPDATE_PATH", "PartDBCfg.py");
-                PartDB pd = new PartDB("filepath");
+                GoumangToolKit.PartDB pd = new PartDB("filepath");
                 foreach (dynamic pp in up)
                 {
                     var kk= pd.UpdatePartDB((string)pp);

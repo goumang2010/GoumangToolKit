@@ -39,15 +39,15 @@ namespace GoumangToolKit
         {
             
             pypath = @"\\192.168.3.32\softwareTools\Autorivet_team_manage\settings\" + pypath;
-            backupfile(pypath);
-            var lines = FileOperation.ReadLines(pypath);
+           BackupOperation.backupfile(pypath);
+            var lines = FileIO.ReadLines(pypath);
            var dd= lines.Select(p => p.Replace(oldstr, newstr));
             
 
             if(dd!=null&&dd.Count()!=0)
             {
                 //Copy to list,so it can close the file
-                FileOperation.WriteFile(dd.ToList(), pypath);
+                FileIO.WriteFile(dd.ToList(), pypath);
             }
            
 
@@ -58,31 +58,6 @@ namespace GoumangToolKit
         }
 
 
-
-        public static void backupfile(string filepath)
-        {
-            string filename = filepath.Split('\\').Last();
-            string folderpath = filepath.Replace(filename, "");
-            string backupfolder = folderpath + @"backup\";
-            localMethod.creatDir(backupfolder);
-
-            if (File.Exists(filepath))
-            {
-                File.Copy(filepath, backupfolder + filename.Replace(".", "_backup_" + DateTime.Now.ToString("yyyy-MM-dd_hh-mm") + "."), true);
-            }
-
-
-
-        }
-        public static void backupfolder(string newfoldername)
-        {
-            //Remove all other files 
-            List<FileInfo> oldfiles = new List<FileInfo>();
-            oldfiles.WalkTree(newfoldername, false);
-            string backupfolder = newfoldername + "backup_" + DateTime.Now.ToString("yyyy-MM-dd_hh-mm");
-            localMethod.creatDir(backupfolder);
-            oldfiles.moveto(backupfolder);
-        }
         public static void creatDir(string savepath)
         {
 
@@ -93,6 +68,7 @@ namespace GoumangToolKit
 
 
         }
+
 
         public static Form get_Form(string formname)
         {

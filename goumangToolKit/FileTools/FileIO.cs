@@ -14,7 +14,7 @@ using Microsoft.Scripting.Hosting;
 using Microsoft.VisualBasic;
 namespace GoumangToolKit
 {
-   public static class FileOperation
+   public static class FileIO
     {
    
 

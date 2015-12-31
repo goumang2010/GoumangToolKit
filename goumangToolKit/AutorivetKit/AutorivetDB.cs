@@ -524,7 +524,7 @@ namespace GoumangToolKit
                 DbHelperSQL.ExecuteSql("Create table if not exists 产品列表(蒙皮号 varchar(100),图号 varchar(100) PRIMARY KEY,图纸名称 varchar(100),名称 varchar(100),大纲编号 varchar(100),程序编号 varchar(100),状态编号 varchar(100),站位号 varchar(50),下级装配号 varchar(50),图纸版次 varchar(50),AOI编号 varchar(100),预铆编号 varchar(100),AO varchar(100),AOI varchar(100),PACR varchar(100),COS varchar(100),TS varchar(100),AO_INDEX varchar(100),PROGRAM varchar(100),AAO int,生产 int);");
                 //DbHelperSQL.ExecuteSql("delete from 产品列表");
 
-                DataTable testExcel =OFFICE_Method.excelMethod.LoadDataFromExcel(fileDialog.FileName);
+                DataTable testExcel =OfficeMethod.excelMethod.LoadDataFromExcel(fileDialog.FileName);
                 DataRow[] shuju;
 
                 shuju = testExcel.Select();
@@ -1205,7 +1205,7 @@ namespace GoumangToolKit
             {
 
 
-                return OFFICE_Method.excelMethod.LoadDataFromExcel(fileDialog.FileName);
+                return OfficeMethod.excelMethod.LoadDataFromExcel(fileDialog.FileName);
             }
 
             return null;
@@ -1229,7 +1229,7 @@ namespace GoumangToolKit
             {
 
 
-                testExcel = OFFICE_Method.excelMethod.LoadDataFromExcel(fileDialog.FileName);
+                testExcel = OfficeMethod.excelMethod.LoadDataFromExcel(fileDialog.FileName);
 
 
 

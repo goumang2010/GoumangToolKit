@@ -57,6 +57,7 @@
     <Compile Include="MongoTools\MongoMethod.NET4.6.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SACITools\PartDB.cs" />
+    <Compile Include="SACITools\QueryParts.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

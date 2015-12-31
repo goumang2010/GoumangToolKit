@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
-using OFFICE_Method;
+using OfficeMethod;
 
 namespace GoumangToolKit
 {
@@ -196,7 +196,7 @@ namespace GoumangToolKit
 
 
 
-            OFFICE_Method.excelMethod.SaveDataTableToExcel(output_dt());
+            OfficeMethod.excelMethod.SaveDataTableToExcel(output_dt());
            // excelMethod.;
            //      excelMethod.SaveDataToExcel(kkk);
 
